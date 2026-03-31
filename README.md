@@ -25,16 +25,6 @@ A modern, user-friendly **Flutter** application designed to simplify meal planni
 
 ---
 
-## 📸 App Preview
-
-| Welcome Screen | Home Dashboard | Recipe Details |
-| :---: | :---: | :---: |
-| ![Welcome](https://via.placeholder.com/200x400?text=Welcome+Screen) | ![Home](https://via.placeholder.com/200x400?text=Home+Dashboard) | ![Details](https://via.placeholder.com/200x400?text=Recipe+Details) |
-
-> **Note:** Replace these placeholders with actual screenshots from your `assets/screenshots` folder.
-
----
-
 ## 🚀 Installation & Setup
 
 Follow these steps to run the project locally:
