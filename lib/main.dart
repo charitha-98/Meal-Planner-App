@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/food_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './data/services/nutrition_service.dart';
 import 'screens//onboarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   final foodProvider = FoodProvider();
-  await foodProvider.init();
   final nutritionService = NutritionService();
   await nutritionService.initModel();
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatScreen extends StatefulWidget {
   final double bmi;
@@ -25,14 +26,14 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
+    final apiKey = dotenv.env['API_KEY'];
     super.initState();
 
-    const myKey = 'AIzaSyAZEVlMkSYquXUbG0b7V6SVHCxZu6mRYW0';
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception("API_KEY not found in .env");
+    }
 
-    print("Testing API Key: ${myKey.substring(0, 5)}...");
-
-    _model = GenerativeModel(model: 'gemini-3-flash-preview', apiKey: myKey);
-    print("Gemini Pro Initialized");
+    _model = GenerativeModel(model: 'gemini-3-flash-preview', apiKey: apiKey);
   }
 
   void _scrollToBottom() {
