@@ -6,7 +6,7 @@ class ChatService {
   ChatService()
     : _model = GenerativeModel(
         model: 'gemini-3-flash-preview',
-        apiKey: 'AIzaSyAZEVlMkSYquXUbG0b7V6SVHCxZu6mRYW0',
+        apiKey: '${{ secrets.API_KEY }}',
       );
 
   Future<String> getNutritionAdvice(String userMessage) async {
