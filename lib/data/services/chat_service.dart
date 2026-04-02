@@ -4,11 +4,18 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class ChatService {
   late final GenerativeModel _model;
 
-  ChatService()
-    : _model = GenerativeModel(
-        model: 'gemini-3-flash-preview',
-        apiKey: 'AIzaSyAZEVlMkSYquXUbG0b7V6SVHCxZu6mRYW0',
-      );
+  ChatService() {
+    final apiKey = dotenv.env['API_KEY'];
+
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception("API_KEY not found in .env");
+    }
+
+    _model = GenerativeModel(
+      model: 'gemini-1.5-flash', // stable model
+      apiKey: apiKey, // from .env
+    );
+  }
 
   Future<String> getNutritionAdvice(String userMessage) async {
     try {
@@ -18,9 +25,9 @@ class ChatService {
       final content = [Content.text(prompt)];
       final response = await _model.generateContent(content);
 
-      return response.text ?? "Sorry, I could not find";
+      return response.text ?? "Sorry, I could not find an answer.";
     } catch (e) {
-      return "Error: $e";
+      return "Something went wrong. Please try again.";
     }
   }
 }
